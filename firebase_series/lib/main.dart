@@ -52,29 +52,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Register'),
-        ),
-        body: FutureBuilder(
-            future: Firebase.initializeApp(
-                // options: DefaultFirebaseOptions.currentPlatform,
-                ),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState){
-                
-                case ConnectionState.none:
-                  // TODO: Handle this case.
-                  break;
-                case ConnectionState.waiting:
-                  // TODO: Handle this case.
-                  break;
-                case ConnectionState.active:
-                  // TODO: Handle this case.
-                  break;
-                case ConnectionState.done:
-                  // TODO: Handle this case.
-                  break;
-              }
+      appBar: AppBar(
+        title: const Text('Register'),
+      ),
+      body: FutureBuilder(
+        future: Firebase.initializeApp(
+            // options: DefaultFirebaseOptions.currentPlatform,
+            ),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
               return Column(
                 children: [
                   TextField(
@@ -111,6 +98,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               );
-            }));
+            default:
+              return const Text('Loading....');
+          }
+        },
+      ),
+    );
   }
 }
